@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use App\Starduck;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 use Validator;
 
 class DuckController extends Controller
 {
 
     public function index() {
-        $starducks = Starduck::paginate(20);
+        $starducks = DB::table('employees')
+        ->whereBetween('salary', array(20000, 25000))
+    //  ->where('department', '=', 'Slaveri')
+        ->orderBy('lastName', 'asc')
+        ->orderBy('firstName', 'asc')
+        ->paginate(20);
         return view('starducks.index', [
             'starducks' => $starducks
         ]);

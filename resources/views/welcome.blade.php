@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hej!</h1>
+    <h1>Welcome!</h1>
+    <p>Type /starducks in your url to get to the employees.</p>
 </body>
 </html>

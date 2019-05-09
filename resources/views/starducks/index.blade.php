@@ -19,8 +19,8 @@
             @foreach ($starducks as $starduck) 
             <li class="list-group-item"> 
                 <p>
+                    {{ $starduck->lastName }}, 
                     {{ $starduck->firstName }} 
-                    {{ $starduck->lastName }} 
                     <br>
                 </p>
                 
@@ -39,7 +39,7 @@
     </div>
 
     {{ $starducks->links() }}
-    
+
     <!-- Felhantering -->
     @if(count($errors) > 0) 
         <h3>Fel</h3>
