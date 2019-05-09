@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Starduck;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Validator;
 
 class DuckController extends Controller
@@ -37,9 +38,7 @@ class DuckController extends Controller
         }
         Starduck::create($request->all());
         return redirect('starducks');
-
     }
-
 
     public function show($id) {
         $starduck = Starduck::findOrFail($id);
@@ -47,4 +46,31 @@ class DuckController extends Controller
             'starduck' => $starduck
         ]);
     }
+
+    public function edit($id) {
+        $starduck = Starduck::find($id);
+        return view('starducks.edit', [
+            'starduck' => $starduck
+        ]);
+    }
+
+    public function update(Request $request, $id) {
+        $starduck = Starduck::findOrFail($id);
+        $starduck->firstName = Input::get('firstName');
+        $starduck->lastName = Input::get('lastName');
+        $starduck->email = Input::get('email');
+        $starduck->department = Input::get('department');
+        $starduck->salary = Input::get('salary');
+        $starduck->save();
+
+        return redirect('starducks');
+    }
+
+    public function destroy($id) {
+        $starduck = Starduck::findOrFail($id);
+        $starduck->delete();
+        
+        return redirect('starducks');
+    }
+
 }

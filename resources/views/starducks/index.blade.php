@@ -7,18 +7,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Employees</title>
 </head>
 
-<div>
+<div class="container">
 
-    <h1>Employees</h1>
+    <h1 class="jumbotron">Employees</h1>
     <div>
-        <ul>
+        <ul class="list-group">
             @foreach ($starducks as $starduck) 
-            <li> 
-                {{ $starduck->firstName }} 
-                {{ $starduck->lastName }} 
+            <li class="list-group-item"> 
+                <p>
+                    {{ $starduck->firstName }} 
+                    {{ $starduck->lastName }} 
+                    <br>
+                </p>
+                
+                {!! Form::open(['route' => ['starducks.destroy', $starduck->employee_id], 'method' => 'post']) !!}
+                    {{ method_field('DELETE') }}
+                    @csrf
+
+                    <div class="form-group">
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                    </div>
+            
+                {!! Form::close() !!}
             </li>
             @endforeach
         </ul>
