@@ -11,7 +11,7 @@ class DuckController extends Controller
 {
 
     public function index() {
-        $starducks = Starduck::all();
+        $starducks = Starduck::paginate(20);
         return view('starducks.index', [
             'starducks' => $starducks
         ]);

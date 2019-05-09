@@ -3,13 +3,14 @@
 @section('main')
 
 <!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Employees</title>
 </head>
-
+<body>
 <div class="container">
 
     <h1 class="jumbotron">Employees</h1>
@@ -37,7 +38,8 @@
         </ul>
     </div>
 
-
+    {{ $starducks->links() }}
+    
     <!-- Felhantering -->
     @if(count($errors) > 0) 
         <h3>Fel</h3>
@@ -49,4 +51,6 @@
     @endif
 </div>
 
+</body>
+</html>
 @endsection
